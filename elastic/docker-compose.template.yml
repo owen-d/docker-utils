@@ -1,0 +1,19 @@
+elasticsearch:
+  image: {{IMAGE}}
+  command: /bin/bash /run.sh
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+  environment:
+    CLUSTER_NAME: es-default
+    ES_DISCOVERY_SG: elasticsearch-cluster-sg
+    AWS_ACCESS_KEY_ID: {{{AWS_ACCESS_KEY_ID}}}
+    AWS_SECRET_ACCESS_KEY: {{{AWS_SECRET_ACCESS_KEY}}}
+    AWS_REGION: us-east-1
+    MINIMUM_MASTERS: 2
+
+    ES_HEAP_SIZE: 1500m
+  volumes:
+    - /data:/data
+  net: host
+  restart: on-failure

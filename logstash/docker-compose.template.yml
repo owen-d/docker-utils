@@ -1,0 +1,13 @@
+logstash:
+  image: {{IMAGE}}
+  environment:
+    AWS_ACCESS_KEY_ID: {{{AWS_ACCESS_KEY_ID}}}
+    AWS_SECRET_ACCESS_KEY: {{{AWS_SECRET_ACCESS_KEY}}}
+    AWS_REGION: us-east-1
+    LOGFILE: /logs/logstash.log
+    SQS_QUEUE: {{{SQS_QUEUE}}}
+    ELASTICSEARCH_HOST: {{{ES_HOST}}}
+    ELASTICSEARCH_PORT: 9200
+  volumes:
+    - /logstash:/logs
+  restart: on-failure
